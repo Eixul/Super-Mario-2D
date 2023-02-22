@@ -5,22 +5,27 @@ using UnityEngine;
 public class PlayerrController : MonoBehaviour
 {
     int playerHealth = 3;
-    public float playerSpeed = 5.5f;
-    public float jumpforce = 7f;
+    public float playerSpeed = 6f;
+    public float jumpforce = 8f;
     string texto = "Hello World";
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rBody;
     private GroundSensor sensor;
     public Animator anim;
+    private Coins coin;
     float horizontal;
+    public SFXManager sfxManager;
+    private BanderaFinish Flag;
 
     // Start is called before the first frame update
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         rBody = GetComponent<Rigidbody2D>();
-        sensor = GameObject.Find("GroundSensor").GetComponent<GroundSensor>();
         anim = GetComponent<Animator>();
+        sensor = GameObject.Find("GroundSensor").GetComponent<GroundSensor>();
+        sensor = GameObject.Find("coin").GetComponent<GroundSensor>();
+        
 
         playerHealth = 10;
         Debug.Log(texto);
@@ -57,6 +62,22 @@ public class PlayerrController : MonoBehaviour
     void FixedUpdate()
     {
         rBody.velocity = new Vector2(horizontal * playerSpeed, rBody.velocity.y);
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "CollisionCoin")
+        {
+            Debug.Log("Coin Picked");
+            Coins coin = collision.gameObject.GetComponent<Coins>();
+            coin.Pick();
+        }
+
+        if(collision.gameObject.tag == "CollisionFlag")
+        {
+            Debug.Log("Finished");
+            BanderaFinish Flag = collision.gameObject.GetComponent<BanderaFinish>();
+        }
     }
 }
 

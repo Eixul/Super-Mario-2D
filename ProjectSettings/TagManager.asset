@@ -6,6 +6,8 @@ TagManager:
   tags:
   - DeadZone
   - CollisionGoomba
+  - CollisionCoin
+  - CollisionFlag
   layers:
   - Default
   - TransparentFX

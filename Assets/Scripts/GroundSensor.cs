@@ -35,7 +35,7 @@ public class GroundSensor : MonoBehaviour
             goomba.Die();
         }
 
-        if(other.gameObject.tag == "DeadZone");
+        if(other.gameObject.tag == "DeadZone")
         {
             Debug.Log("U dead");
             

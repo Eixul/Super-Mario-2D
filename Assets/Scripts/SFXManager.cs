@@ -6,6 +6,9 @@ public class SFXManager : MonoBehaviour
 {
     public AudioClip goombaDeath;
     public AudioClip marioDeath;
+    public AudioClip pickCoin;
+    public AudioClip Bandera;
+    public AudioClip Final;
 
     private AudioSource source;
     // Start is called before the first frame update
@@ -22,6 +25,21 @@ public class SFXManager : MonoBehaviour
     public void MarioDeath()
     {
         source.PlayOneShot(marioDeath);
+    }
+
+    public void PickCoin()
+    {
+        source.PlayOneShot(pickCoin);
+    }
+    
+    public void Flag()
+    {
+        source.PlayOneShot(Bandera);
+    }
+
+    public void Done()
+    {
+        source.PlayOneShot(Final);
     }
 
 }
