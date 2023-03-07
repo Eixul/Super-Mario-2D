@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyGoomba : MonoBehaviour
 {
@@ -19,7 +20,8 @@ public class EnemyGoomba : MonoBehaviour
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         rBody = GetComponent<Rigidbody2D>();
-
+        sfxManager = GameObject.Find("SFXManager").GetComponent<SFXManager>();
+        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -33,8 +35,7 @@ public class EnemyGoomba : MonoBehaviour
         anim.SetBool("IsDead", true);
         boxCollider.enabled = false;
         Destroy(this.gameObject, 0.5f);
-        sfxManager = GameObject.Find("SFXManager").GetComponent<SFXManager>();
-        soundManager = GameObject.Find("SoundManager").GetComponent<SoundManager>();
+        
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -44,6 +45,7 @@ public class EnemyGoomba : MonoBehaviour
             Debug.Log("Mario Dead");
             Destroy(collision.gameObject);
             sfxManager.MarioDeath();
+            SceneManager.LoadScene(2);
         }
 
         if(collision.gameObject.tag == "CollisionGoomba")
