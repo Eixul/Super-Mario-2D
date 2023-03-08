@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerrController : MonoBehaviour
 {
     int playerHealth = 3;
     public float playerSpeed = 6f;
     public float jumpforce = 8f;
-    public Text contador;
     string texto = "Hello World";
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D rBody;
@@ -18,7 +16,6 @@ public class PlayerrController : MonoBehaviour
     float horizontal;
     public SFXManager sfxManager;
     private BanderaFinish Flag;
-    int ContadorMonedas;
 
     // Start is called before the first frame update
     void Start()
@@ -27,8 +24,8 @@ public class PlayerrController : MonoBehaviour
         rBody = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         sensor = GameObject.Find("GroundSensor").GetComponent<GroundSensor>();
-        coin = GameObject.Find("Coins").GetComponent<Coins>();
-        ContadorMonedas = 0;
+        sensor = GameObject.Find("coin").GetComponent<GroundSensor>();
+        
 
         playerHealth = 10;
         Debug.Log(texto);
@@ -74,9 +71,6 @@ public class PlayerrController : MonoBehaviour
             Debug.Log("Coin Picked");
             Coins coin = collision.gameObject.GetComponent<Coins>();
             coin.Pick();
-            ContadorMonedas++;
-            Debug.Log(ContadorMonedas);
-            contador.text = "Coiners " + ContadorMonedas;
         }
 
         if(collision.gameObject.tag == "CollisionFlag")
