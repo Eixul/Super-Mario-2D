@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GroundSensor : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class GroundSensor : MonoBehaviour
             soundManager.StopBGM();
 
             sfxManager.MarioDeath();
+
+            SceneManager.LoadScene(2);
         }
     }
     void OnTriggerStay2D(Collider2D other) 
